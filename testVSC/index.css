@@ -1,32 +1,56 @@
 .navbar-nav {
     display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
+    align-items: center;
+    /* 수직 가운데 정렬 */
 }
 
 .nav-item {
-    margin-right: 10px; /* 각 아이템 사이의 간격 조절 */
+    margin-right: 10px;
+    /* 각 아이템 사이의 간격 조절 */
 }
 
 #current-time {
-    margin-right: 10px; /* 시간과 버튼 사이의 간격 조절 */
+    margin-right: 10px;
+    /* 시간과 버튼 사이의 간격 조절 */
 }
 
 .navbar-nav .btn {
-    background-color: rgb(0, 0, 77); /* 버튼 배경색을 남색으로 지정 */
-    color: white; /* 버튼 텍스트 색상을 흰색으로 지정 */
-    border: none; /* 버튼 테두리 제거 */
-    padding: 6px 12px; /* 버튼 내부 여백 조절 */
-    border-radius: 4px; /* 버튼 모서리 둥글게 */
-    transition: background-color 0.3s; /* 배경색 변화에 부드러운 전환 효과 추가 */
+    background-color: rgb(0, 0, 77);
+    /* 버튼 배경색을 남색으로 지정 */
+    color: white;
+    /* 버튼 텍스트 색상을 흰색으로 지정 */
+    border: none;
+    /* 버튼 테두리 제거 */
+    padding: 6px 12px;
+    /* 버튼 내부 여백 조절 */
+    border-radius: 4px;
+    /* 버튼 모서리 둥글게 */
+    transition: background-color 0.3s;
+    /* 배경색 변화에 부드러운 전환 효과 추가 */
 }
 
-.navbar-nav .a{
-    background-color: rgb(144, 144, 221); /* 버튼 배경색을 남색으로 지정 */
-    color: white; /* 버튼 텍스트 색상을 흰색으로 지정 */
-    border: none; /* 버튼 테두리 제거 */
-    padding: 6px 12px; /* 버튼 내부 여백 조절 */
-    border-radius: 4px; /* 버튼 모서리 둥글게 */
-    transition: background-color 0.3s; /* 배경색 변화에 부드러운 전환 효과 추가 */
+.navbar-nav .a {
+    background-color: rgb(144, 144, 221);
+    /* 버튼 배경색을 남색으로 지정 */
+    color: white;
+    /* 버튼 텍스트 색상을 흰색으로 지정 */
+    border: none;
+    /* 버튼 테두리 제거 */
+    padding: 6px 12px;
+    /* 버튼 내부 여백 조절 */
+    border-radius: 4px;
+    /* 버튼 모서리 둥글게 */
+    transition: background-color 0.3s;
+    /* 배경색 변화에 부드러운 전환 효과 추가 */
+}
+
+.navbar-text a {
+    color: white;
+    text-decoration: none;
+    /* 밑줄 제거 */
+    font-weight: bold;
+    margin-right: 10px;
+    /* 각 링크 뒤에 10px의 오른쪽 여백 추가 */
 }
 
 .btn.btn-secondary {
@@ -34,36 +58,63 @@
     color: black;
     border: 1px solid black;
     border-radius: 0;
-    padding: 4px 8px; /* 버튼 내부 여백을 줄여서 높이를 가늘게 만듦 */
+    padding: 4px 8px;
+    /* 버튼 내부 여백을 줄여서 높이를 가늘게 만듦 */
 }
 
-.topnav{
-    background-color: rgb(0, 0, 77); /* 버튼 배경색을 남색으로 지정 */
+.topnav {
+    background-color: rgb(0, 0, 77);
+    /* 버튼 배경색을 남색으로 지정 */
+    width: 100%;
+    display: flex;
 }
 
 .navbar-brand {
-    color: white; /* 텍스트 색상을 흰색으로 지정 */
+    color: white;
+    /* 텍스트 색상을 흰색으로 지정 */
     font-weight: bold;
 }
 
-
 /* 왼쪽 하단 아이콘 버튼 */
-.leftArrow{
+
+.mapBottom{
+    display: flex;
+    justify-content: space-between;
+}
+.leftArrow {
     position: fixed;
-            bottom: 2px;
-            left: 2px;
-           
-            border: none;
-            cursor: pointer;
-            z-index: 2000; /* 지도 위에 버튼을 표시하기 위해 z-index를 높게 설정 */
-            background-color: transparent;
+    bottom: 2px;
+    left: 2px;
+    border: none;
+    cursor: pointer;
+    z-index: 5000;
+    /* 지도 위에 버튼을 표시하기 위해 z-index를 높게 설정 */
+    background-color: transparent;
 }
 
-.leftArrow img {
-    width: 20px; /* 원하는 너비 */
-    height: 20px; /* 원하는 높이 */
+.rightArrow {
+    position: fixed;
+    bottom: 2px;
+    right: 2px;
+    border: none;
+    cursor: pointer;
+    z-index: 2000;
+    /* 지도 위에 버튼을 표시하기 위해 z-index를 높게 설정 */
+    background-color: transparent;
 }
 
+.mapBottom img {
+    width: 20px;
+    /* 원하는 너비 */
+    height: 20px;
+    /* 원하는 높이 */
+}
+
+.leftArrowBtn {
+    margin-top: 0;
+}
+
+/* 오른쪽 하단 아이콘 버튼 */
 
 /* 좌측 하단 모달창 */
 .bottom-banner {
@@ -72,61 +123,57 @@
     bottom: 0;
     width: 200px;
     height: 600px;
-    background-color: #ffffff; /* 배너 배경색 */
-    color: white; /* 글자색 */
-    text-align: center; /* 텍스트 중앙 정렬 */
-    
-    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
-    z-index: 1000; /* 다른 요소 위에 배치하기 위해 z-index 설정 */
-    display: flex; /* 카드들을 가로로 정렬하기 위해 Flexbox 사용 */
-    flex-direction: column; /* 카드들을 세로로 정렬 */
-    align-items: center; /* 세로 정렬 시 중앙 정렬 */
+    background-color: #ffffff;
+    /* 배너 배경색 */
+    color: white;
+    /* 글자색 */
+    text-align: center;
+    /* 텍스트 중앙 정렬 */
+
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    /* 그림자 효과 */
+    z-index: 1000;
+    /* 다른 요소 위에 배치하기 위해 z-index 설정 */
+    display: flex;
+    /* 카드들을 가로로 정렬하기 위해 Flexbox 사용 */
+    flex-direction: column;
+    /* 카드들을 세로로 정렬 */
+    align-items: center;
+    /* 세로 정렬 시 중앙 정렬 */
 }
 
 .cardd {
     /* 예시로 높이를 100px로 설정 */
-    width: 100%; /* 부모 요소의 패딩이나 여백을 고려하여 조정 */
+    width: 100%;
+    /* 부모 요소의 패딩이나 여백을 고려하여 조정 */
     font-weight: bold;
-
-
 }
 
-.card-headerr{
+.card-headerr {
     background-color: rgb(0, 0, 77);
 }
 
-.card-bodyy{
+.card-bodyy {
     background-color: rgb(255, 255, 255);
-    color: black; /* 글자색 */
-    text-align: left; /* 텍스트를 왼쪽으로 정렬 */
+    color: black;
+    /* 글자색 */
+    text-align: left;
+    /* 텍스트를 왼쪽으로 정렬 */
 }
 
-.card-bodyy img{
+.card-bodyy img {
     width: 40px;
     height: 40px;
 }
 
-
-
-
-.mapBottom{
-    margin-top: 0px;
-    
-}
-
-
-.card-header{
-    width: 100%;
-    height: 100%;
-}
-
-
-
 /* 아코디언메뉴 */
 .accordion {
-    width: 20%; /* 조정 가능한 영역 */
-    float: left; /* 왼쪽에 정렬 */    
+    width: 20%;
+    /* 조정 가능한 영역 */
+    float: left;
+    /* 왼쪽에 정렬 */
     display: none;
+    height: 100vh;
 }
 
 .accordion-btn {
@@ -140,17 +187,67 @@
     outline: none;
 }
 
-.accordion-content {
-    display: none; /* 기본적으로 내용을 숨김 */
-    padding: 10px;
-    background-color: #eee;
-}
-
-#rightMenu{
+#rightMenu {
     cursor: pointer;
 }
+.accordion-body {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    /* 글자색 */
+    text-align: left;
+    /* 텍스트를 왼쪽으로 정렬 */
+    padding: 0;
+    margin: 0;
+}
+.accordion-header {
+    background-color: rgb(0, 0, 77);
+    color: white;
+    text-align: center;
+    font-size: large;
+    padding: 4px;
+}
 
+.accordionn {
+    /* 예시로 높이를 100px로 설정 */
+    width: 100%;
+    /* 부모 요소의 패딩이나 여백을 고려하여 조정 */
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #e9eff1;
+}
 
+/* 표 */
+.table-container {
+    width: auto;
+    overflow-x: hidden;
+    /* 가로 스크롤 제거 */
+    overflow-y: auto;
+    /* 세로 스크롤만 추가 */
+}
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    white-space: nowrap;
+
+}
+
+thead {
+    background-color: #03548a;
+    color: white;
+}
+
+td {
+    background-color: #e9eff1;
+}
 
 /* 지도 */
