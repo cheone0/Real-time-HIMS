@@ -188,7 +188,12 @@ function showRainfallTables() {
     // table-container의 높이를 100으로 변경합니다.
     const tableContainer = firstTable.querySelector('.table-container');
     tableContainer.style.height = '100%';
+    //Operation Agency 생기게 하는거
+    const element = document.getElementById('donshow');
+    element.classList.remove('donshow');
 }
+
+
 //select-waterLevel 선택하면 테이블 보이고 사라지게 하기
 function showWaterLevellTables() {
   // Rainfall 테이블들을 감싸고 있는 부모 요소를 선택합니다.
@@ -209,7 +214,11 @@ function showWaterLevellTables() {
   // table-container의 높이를 100으로 변경합니다.
   const tableContainer = firstTable.querySelector('.table-container');
   tableContainer.style.height = '100%';
+  //Operation Agency 생기게 하는거
+  const element = document.getElementById('donshow');
+  element.classList.remove('donshow');
 }
+
 //select all 선택
 function showAllTables() {
   // 모든 테이블을 보이도록 설정합니다.
@@ -224,6 +233,14 @@ function showAllTables() {
   tableContainers.forEach(container => {
       container.style.height = '400px';
   });
+  const element = document.getElementById('donshow');
+    element.classList.add('donshow');
+}
+
+
+//중간 배너 표 생성
+function makeGraph() {
+    console.log('하이');
 }
 
 //지도함수

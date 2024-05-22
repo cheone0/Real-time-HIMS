@@ -137,20 +137,36 @@
     <div style="display: flex;">
         <!-- 지도 div -->
         <div id="map" style="height:100vh; width: 100%;"></div>
-            <!-- 왼쪽 하단 토글 -->
-    <div class="mapBottom">
-        <div class="leftArrowBtn">
-            <button type="button" class="leftArrow">
-                <img src="/icons8-arrow-50.png" alt="Icon">
-            </button>
+        <!-- 왼쪽 하단 토글 -->
+        <div class="mapBottom">
+            <div class="leftArrowBtn">
+                <button type="button" class="leftArrow">
+                    <img src="/icons8-arrow-50.png" alt="Icon">
+                </button>
+            </div>
         </div>
-    </div>
 
         <!-- 오른쪽 아코디언 메뉴 -->
         <div class="accordion" id="accordionMenu">
             <div class="accordionn">
 
                 <div id="baseTable">
+                    <div class="dropdown rightDropDown donshow" id="donshow">
+                        <span>Operation Agency:</span>
+                        <button
+                            class="btn btn-secondary dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Total
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">Total</a>
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="firstTable">
                         <!-- Rainfall Station 테이블생성 -->
                         <div class="accordion-header">
@@ -225,9 +241,7 @@
         <!-- 오른쪽 아코디언 메뉴 끝-->
     </div>
 
-
-    
-
+    <!-- 왼쪽 하단 토글 -->
     <div class="bottom-banner">
         <div class="cardd">
             <div class="card-headerr">Rainfall</div>
@@ -290,6 +304,57 @@
 
     </div>
     <!-- 왼쪽 하단 토글 끝-->
+    <div class="middleMenu">
+        <div class="middleMenuTop">
+            <div class="middleMenuTopBanner">Rainfall Station:</div>
+
+            <div class="middleMenu-body1">
+                <input type="date" id="start" name="trip-start">
+                <input type="date" id="end" name="trip-end">     
+                <button type="button" class="btn btn-primary" onclick="makeGraph()">Search</button>          
+                <button type="button" class="btn btn-primary">Download</button>  
+                <button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">save</button>     
+            </div>
+
+            <div class="middleMenu-body2">
+                <!-- 왼쪽표 -->
+                <div class="innerBody1">
+                    <!-- 표 삽입 -->
+                    <div class="table-container" style="height: 400px;">
+                        <table id="dynamic-table55">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>TIME</th>
+                                    <th>RF[mm]</th>
+                                    <th>CRF[mm]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- JavaScript가 이곳에 행을 추가합니다. -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <!-- 오른쪽그래프 -->
+                <div class="innerBody2">
+                    <img src="/graph.PNG">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
 <script
