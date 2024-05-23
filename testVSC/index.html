@@ -124,7 +124,7 @@
                             <a class="dropdown-item" href="#" id="table4">Reservoir</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#" id="table1">CCTV</a>
+                            <a class="dropdown-item" href="#" id="table5" onclick="CCTVTables()">CCTV</a>
                         </li>
                     </ul>
                     <img src="/icons8-arrow-30.png" class="imgsertoku" id="rightMenu">
@@ -234,6 +234,27 @@
                         </div>
                     </div>
 
+                    <div class="fourTable" style="display: none;">
+                        <!-- CCTV 테이블생성 -->
+                        <div class="accordion-header">
+                            <span>CCTV</span></div>
+                        <div class="accordion-body">
+                            <div class="table-container" style="height: 100%;">
+                                <table id="dynamic-table3">
+                                    <thead>
+                                        <tr>
+                                            <th>Selection(■)</th>
+                                            <th>CCTV Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- JavaScript가 이곳에 행을 추가합니다. -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -304,16 +325,22 @@
 
     </div>
     <!-- 왼쪽 하단 토글 끝-->
-    <div class="middleMenu">
+
+
+
+    <!-- 중앙 배너 -->
+    <div class="middleMenu" style="display: none;">
         <div class="middleMenuTop">
-            <div class="middleMenuTopBanner">Rainfall Station:</div>
+            <div class="middleMenuTopBanner">Rainfall Station: <span></span><img src="/icons8-close-26.png" style="float: right; cursor: pointer;" id="closeIMG"></div>
+            
+            
 
             <div class="middleMenu-body1">
-                <input type="date" id="start" name="trip-start">
+                <input type="date" id="start" name="trip-start" style="margin-left: 10px;">
                 <input type="date" id="end" name="trip-end">     
                 <button type="button" class="btn btn-primary" onclick="makeGraph()">Search</button>          
                 <button type="button" class="btn btn-primary">Download</button>  
-                <button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">save</button>     
+                <button type="button" class="btn btn-primary" style="float: right; margin-right: 5px;">Save</button>     
             </div>
 
             <div class="middleMenu-body2">
@@ -330,7 +357,7 @@
                                     <th>CRF[mm]</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style="color: black;">
                                 <!-- JavaScript가 이곳에 행을 추가합니다. -->
                             </tbody>
                         </table>
@@ -339,7 +366,7 @@
                 </div>
                 <!-- 오른쪽그래프 -->
                 <div class="innerBody2">
-                    <img src="/graph.PNG">
+                    <img src="/graph.PNG" height="100%" width="100%">
                 </div>
             </div>
         </div>

@@ -77,12 +77,14 @@ let rainfallStation = [
 ];
 document.addEventListener('DOMContentLoaded', function () {
     const tableBody = document.querySelector('#dynamic-table tbody');
+    const spanElement = document.querySelector('.middleMenuTopBanner span'); // span 요소 선택
 
     for (let i = 0; i < 18; i++) {
         const row = document.createElement('tr');
         // 첫 번째 열에 rainfallStation 배열의 값을 넣기
         const stationIndex = i % rainfallStation.length; // 인덱스가 배열 범위를 넘어가면 다시 처음부터 시작
         const cell = document.createElement('td');
+
         cell.textContent = rainfallStation[stationIndex];
         row.appendChild(cell);
 
@@ -94,48 +96,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
         tableBody.appendChild(row);
     }
+    // 테이블의 모든 셀에 클릭 이벤트 리스너 추가
+    tableBody.addEventListener('click', function (event) {
+
+        const middleMenusView = document.querySelectorAll('.middleMenu');
+        middleMenusView.forEach(function (element) {
+            element.style.display = 'block';
+        });
+        if (event.target.tagName === 'TD') {
+
+            spanElement.textContent = event.target.textContent;
+        }
+    });
 });
 //Water Level Stations 테이블생성
 document.addEventListener('DOMContentLoaded', function () {
-  const tableBody = document.querySelector('#dynamic-table2 tbody');
+    const tableBody = document.querySelector('#dynamic-table2 tbody');
 
-  // 아이콘 이미지 배열
-  const iconImages = [
-      'icons8-arrow-25.png',
-      'icons8-arrow-24.png',
-      'icons8-stop-24.png'
-  ];
+    // 아이콘 이미지 배열
+    const iconImages = ['icons8-arrow-25.png', 'icons8-arrow-24.png', 'icons8-stop-24.png'];
 
-  for (let i = 0; i < 18; i++) {
-      const row = document.createElement('tr');
+    for (let i = 0; i < 18; i++) {
+        const row = document.createElement('tr');
 
-      // 첫 번째 열에 rainfallStation 배열의 값을 넣기
-      const stationIndex = i % rainfallStation.length; // 인덱스가 배열 범위를 넘어가면 다시 처음부터 시작
-      const cell = document.createElement('td');
-      cell.textContent = rainfallStation[stationIndex];
-      row.appendChild(cell);
+        // 첫 번째 열에 rainfallStation 배열의 값을 넣기
+        const stationIndex = i % rainfallStation.length; // 인덱스가 배열 범위를 넘어가면 다시 처음부터 시작
+        const cell = document.createElement('td');
+        cell.textContent = rainfallStation[stationIndex];
+        row.appendChild(cell);
 
-      // 두 번째 열에 무작위 숫자와 무작위 아이콘 사진 추가
-      const iconCell = document.createElement('td');
-      const randomNumber = (Math.random() * 6).toFixed(1); // 0에서 6 사이의 무작위 실수 생성
-      const randomImageIndex = Math.floor(Math.random() * iconImages.length); // 이미지 배열의 인덱스 무작위 선택
-      const iconImage = document.createElement('img');
-      iconImage.src = '/' + iconImages[randomImageIndex]; // 무작위 아이콘 이미지 경로 설정
-      const textNode = document.createTextNode(randomNumber + ' ');
+        // 두 번째 열에 무작위 숫자와 무작위 아이콘 사진 추가
+        const iconCell = document.createElement('td');
+        const randomNumber = (Math.random() * 6).toFixed(1); // 0에서 6 사이의 무작위 실수 생성
+        const randomImageIndex = Math.floor(Math.random() * iconImages.length); // 이미지 배열의 인덱스 무작위 선택
+        const iconImage = document.createElement('img');
+        iconImage.src = '/' + iconImages[randomImageIndex]; // 무작위 아이콘 이미지 경로 설정
+        const textNode = document.createTextNode(randomNumber + ' ');
 
-      // 텍스트와 이미지를 함께 넣기
-      iconCell.appendChild(textNode);
-      iconCell.appendChild(iconImage);
-      row.appendChild(iconCell);
+        // 텍스트와 이미지를 함께 넣기
+        iconCell.appendChild(textNode);
+        iconCell.appendChild(iconImage);
+        row.appendChild(iconCell);
 
-      // 세 번째 열에 무작위 숫자 추가
-      const thirdCell = document.createElement('td');
-      const randomValue = (Math.random() * 6).toFixed(1); // 0에서 6 사이의 무작위 실수 생성
-      thirdCell.textContent = randomValue;
-      row.appendChild(thirdCell);
+        // 세 번째 열에 무작위 숫자 추가
+        const thirdCell = document.createElement('td');
+        const randomValue = (Math.random() * 6).toFixed(1); // 0에서 6 사이의 무작위 실수 생성
+        thirdCell.textContent = randomValue;
+        row.appendChild(thirdCell);
 
-      tableBody.appendChild(row);
-  }
+        tableBody.appendChild(row);
+    }
 });
 
 //Warning Reports 테이블생성
@@ -168,6 +178,32 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+//CCTV 테이블생성
+document.addEventListener('DOMContentLoaded', function () {
+    const tableBody = document.querySelector('.fourTable tbody');
+
+    for (let i = 0; i < 18; i++) {
+        const row = document.createElement('tr');
+
+        // 첫 번째 열에 rainfallStation 배열의 값을 넣기
+        const checkboxCell = document.createElement('td');
+        checkboxCell.innerHTML = '<input type="checkbox">';
+        row.appendChild(checkboxCell);
+
+        // 두 번째 열에 rainfallStation 배열의 값을 넣기
+        const stationIndex = i % rainfallStation.length;
+        const cell2 = document.createElement('td');
+        cell2.textContent = rainfallStation[stationIndex];
+        row.appendChild(cell2);
+
+        tableBody.appendChild(row);
+    }
+});
+
+
+
+
+
 //select-rainfall 선택하면 테이블 보이고 사라지게 하기
 function showRainfallTables() {
     // Rainfall 테이블들을 감싸고 있는 부모 요소를 선택합니다.
@@ -190,58 +226,153 @@ function showRainfallTables() {
     tableContainer.style.height = '100%';
     //Operation Agency 생기게 하는거
     const element = document.getElementById('donshow');
-    element.classList.remove('donshow');
-}
+    element
+        .classList
+        .remove('donshow');
 
+}
 
 //select-waterLevel 선택하면 테이블 보이고 사라지게 하기
 function showWaterLevellTables() {
-  // Rainfall 테이블들을 감싸고 있는 부모 요소를 선택합니다.
-  const baseTable = document.getElementById('baseTable');
+    // Rainfall 테이블들을 감싸고 있는 부모 요소를 선택합니다.
+    const baseTable = document.getElementById('baseTable');
 
-  // Rainfall 테이블들을 감싸고 있는 각각의 div 요소를 숨깁니다.
-  const rainfallTables = baseTable.querySelectorAll(
-      '.firstTable, .secTable, .thirTable'
-  );
-  rainfallTables.forEach(table => {
-      table.style.display = 'none';
-  });
+    // Rainfall 테이블들을 감싸고 있는 각각의 div 요소를 숨깁니다.
+    const rainfallTables = baseTable.querySelectorAll(
+        '.firstTable, .secTable, .thirTable'
+    );
+    rainfallTables.forEach(table => {
+        table.style.display = 'none';
+    });
 
-  // 마지막에는 firstTable 클래스를 가진 요소만 보이도록 설정합니다.
-  const firstTable = baseTable.querySelector('.secTable');
-  firstTable.style.display = 'block';
+    // 마지막에는 firstTable 클래스를 가진 요소만 보이도록 설정합니다.
+    const firstTable = baseTable.querySelector('.secTable');
+    firstTable.style.display = 'block';
 
-  // table-container의 높이를 100으로 변경합니다.
-  const tableContainer = firstTable.querySelector('.table-container');
-  tableContainer.style.height = '100%';
-  //Operation Agency 생기게 하는거
-  const element = document.getElementById('donshow');
-  element.classList.remove('donshow');
+    // table-container의 높이를 100으로 변경합니다.
+    const tableContainer = firstTable.querySelector('.table-container');
+    tableContainer.style.height = '100%';
+    //Operation Agency 생기게 하는거
+    const element = document.getElementById('donshow');
+    element
+        .classList
+        .remove('donshow');
 }
 
 //select all 선택
 function showAllTables() {
-  // 모든 테이블을 보이도록 설정합니다.
-  const baseTable = document.getElementById('baseTable');
-  const tables = baseTable.querySelectorAll('.firstTable, .secTable, .thirTable');
-  tables.forEach(table => {
-      table.style.display = 'block';
-  });
+    // 모든 테이블을 보이도록 설정합니다.
+    const baseTable = document.getElementById('baseTable');
+    const tables = baseTable.querySelectorAll('.firstTable, .secTable, .thirTable');
+    tables.forEach(table => {
+        table.style.display = 'block';
+    });
 
-  // table-container의 높이를 다시 400px로 설정합니다.
-  const tableContainers = baseTable.querySelectorAll('.table-container');
-  tableContainers.forEach(container => {
-      container.style.height = '400px';
-  });
-  const element = document.getElementById('donshow');
-    element.classList.add('donshow');
+    // table-container의 높이를 다시 400px로 설정합니다.
+    const tableContainers = baseTable.querySelectorAll('.table-container');
+    tableContainers.forEach(container => {
+        container.style.height = '400px';
+    });
+    const element = document.getElementById('donshow');
+    element
+        .classList
+        .add('donshow');
 }
 
+//CCTV 선택하면 테이블 보이고 사라지게 하기
+function CCTVTables() {
+    // Rainfall 테이블들을 감싸고 있는 부모 요소를 선택합니다.
+    const baseTable = document.getElementById('baseTable');
+
+    // Rainfall 테이블들을 감싸고 있는 각각의 div 요소를 숨깁니다.
+    const rainfallTables = baseTable.querySelectorAll(
+        '.firstTable, .secTable, .thirTable'
+    );
+    rainfallTables.forEach(table => {
+        table.style.display = 'none';
+    });
+
+    // 마지막에는 firstTable 클래스를 가진 요소만 보이도록 설정합니다.
+    const fourTable = baseTable.querySelector('.fourTable');
+    fourTable.style.display = 'block';
+    
+    //Operation Agency 생기게 하는거
+    const element = document.getElementById('donshow');
+    element
+        .classList
+        .remove('donshow');
+}
 
 //중간 배너 표 생성
 function makeGraph() {
-    console.log('하이');
+    const tbody = document.querySelector('#dynamic-table55 tbody');
+    const startDate = new Date(document.getElementById('start').value);
+    const endDate = new Date(document.getElementById('end').value);
+
+    // 시작 날짜가 종료 날짜보다 미래인지 확인
+    if (startDate.getTime() >= endDate.getTime()) {
+        console.error("종료 날짜는 시작 날짜보다 미래여야 합니다.");
+        return;
+    }
+
+    // 이전 테이블 열을 지웁니다
+    tbody.innerHTML = '';
+
+    // 시작 날짜부터 종료 날짜까지 각 날짜별로 열을 생성합니다
+    let currentDate = new Date(startDate);
+    while (currentDate <= endDate) {
+        // 새로운 열을 생성합니다
+        const tr = document.createElement('tr');
+
+        // 날짜를 표시하는 첫 번째 셀을 생성하고 추가합니다
+        const dateCell = document.createElement('td');
+        dateCell.textContent = currentDate.toISOString().split('T')[0]; // 형식: YYYY-MM-DD
+        tr.appendChild(dateCell);
+
+        // 나머지 세 개의 열에는 모두 0을 넣어줍니다
+        for (let j = 0; j < 3; j++) {
+            const td = document.createElement('td');
+            td.textContent = '0';
+            tr.appendChild(td);
+        }
+
+        // 테이블에 열을 추가합니다
+        tbody.appendChild(tr);
+
+        // 다음 날짜로 이동합니다
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
 }
+
+
+
+
+
+
+// Close 이미지를 클릭했을 때 이벤트 처리
+const closeImg = document.getElementById('closeIMG');
+closeImg.addEventListener('click', function () {
+    // middleMenu 클래스를 가진 모든 요소를 숨김
+    const middleMenus = document.querySelectorAll('.middleMenu');
+    middleMenus.forEach(function (element) {
+        element.style.display = 'none';
+    });
+});
+// 지정날짜 불러오기
+const startDateInput = document.getElementById('start');
+const endDateInput = document.getElementById('end');
+
+// 시작 날짜 입력란에 이벤트 리스너 추가
+startDateInput.addEventListener('input', function (event) {
+    const startDate = event.target.value;
+    console.log('시작 날짜:', startDate);
+});
+
+// 종료 날짜 입력란에 이벤트 리스너 추가
+endDateInput.addEventListener('input', function (event) {
+    const endDate = event.target.value;
+    console.log('종료 날짜:', endDate);
+});
 
 //지도함수
 let map;
