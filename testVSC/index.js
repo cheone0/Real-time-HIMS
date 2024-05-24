@@ -54,7 +54,6 @@ document
         }
     });
 
-//Rainfall Station 테이블생성
 let rainfallStation = [
     "Song Muc",
     "Yen My",
@@ -75,6 +74,7 @@ let rainfallStation = [
     "Dap Dieu Thieu Ngoc",
     "Trans BC DW"
 ];
+//Rainfall Station 테이블생성
 document.addEventListener('DOMContentLoaded', function () {
     const tableBody = document.querySelector('#dynamic-table tbody');
     const spanElement = document.querySelector('.middleMenuTopBanner span'); // span 요소 선택
@@ -181,11 +181,12 @@ document.addEventListener('DOMContentLoaded', function () {
 //CCTV 테이블생성
 document.addEventListener('DOMContentLoaded', function () {
     const tableBody = document.querySelector('.fourTable tbody');
+    const middleMenuBody1 = document.querySelector('.middleMenuCCTV-body1');
 
     for (let i = 0; i < 18; i++) {
         const row = document.createElement('tr');
 
-        // 첫 번째 열에 rainfallStation 배열의 값을 넣기
+        // 첫 번째 열에 체크박스 추가
         const checkboxCell = document.createElement('td');
         checkboxCell.innerHTML = '<input type="checkbox">';
         row.appendChild(checkboxCell);
@@ -198,11 +199,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
         tableBody.appendChild(row);
     }
+
+    // 테이블의 모든 체크박스에 클릭 이벤트 리스너 추가
+    tableBody.addEventListener('click', function (event) {
+        if (event.target.type === 'checkbox') {
+            const checkbox = event.target;
+            const row = checkbox.closest('tr');
+            const secondCell = row.children[1]; // 두 번째 열
+
+            if (checkbox.checked) {
+                // 체크박스가 체크되었을 때
+                const newCardHTML = `
+                    <div class="card cardCCTV" style="height: 250px; width: 300px;">
+                        <div class="cardTitle">${secondCell.textContent}</div>
+                        <div>
+                            <img src="/manggom.png" class="card-img-bottom">
+                        </div>
+                    </div>
+                `;
+
+                // HTML 문자열을 요소로 변환하여 추가
+                middleMenuBody1.insertAdjacentHTML('beforeend', newCardHTML);
+            } else {
+                // 체크박스가 체크 해제되었을 때
+                const cards = middleMenuBody1.querySelectorAll('.card');
+                cards.forEach(card => {
+                    if (card.querySelector('.cardTitle').textContent === secondCell.textContent) {
+                        card.remove();
+                    }
+                });
+            }
+
+            const middleMenusCCTVView = document.querySelectorAll('.middleMenuCCTV');
+            middleMenusCCTVView.forEach(function (element) {
+                element.style.display = 'block';
+            });
+        }
+    });
 });
-
-
-
-
 
 //select-rainfall 선택하면 테이블 보이고 사라지게 하기
 function showRainfallTables() {
@@ -295,7 +329,7 @@ function CCTVTables() {
     // 마지막에는 firstTable 클래스를 가진 요소만 보이도록 설정합니다.
     const fourTable = baseTable.querySelector('.fourTable');
     fourTable.style.display = 'block';
-    
+
     //Operation Agency 생기게 하는거
     const element = document.getElementById('donshow');
     element
@@ -326,7 +360,9 @@ function makeGraph() {
 
         // 날짜를 표시하는 첫 번째 셀을 생성하고 추가합니다
         const dateCell = document.createElement('td');
-        dateCell.textContent = currentDate.toISOString().split('T')[0]; // 형식: YYYY-MM-DD
+        dateCell.textContent = currentDate
+            .toISOString()
+            .split('T')[0]; // 형식: YYYY-MM-DD
         tr.appendChild(dateCell);
 
         // 나머지 세 개의 열에는 모두 0을 넣어줍니다
@@ -343,11 +379,6 @@ function makeGraph() {
         currentDate.setDate(currentDate.getDate() + 1);
     }
 }
-
-
-
-
-
 
 // Close 이미지를 클릭했을 때 이벤트 처리
 const closeImg = document.getElementById('closeIMG');
