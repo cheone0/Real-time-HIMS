@@ -14,9 +14,9 @@
         <!-- 제이쿼리cdn -->
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
         <!-- css -->
-        <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="stylesheet" type="text/css" href="index_sec.css">
         <!-- js -->
-        <script defer="defer" src="index.js"></script>
+        <script defer="defer" src="index_sec.js"></script>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script>
             (g => {
@@ -66,10 +66,10 @@
         <!-- 상단 네비게이션 바 -->
         <nav class="navbar navbar-expand-lg topnav">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Real-time Hydrololgical Information Management System</a>
+                <a class="navbar-brand" href="#">Equipment Status Monitoring System</a>
 
                 <span class="navbar-text">
-                    <a href="index_sec.html">Sitemap</a>
+                    <a href="index.html">Sitemap</a>
                     <a href="#">User Name</a>
                     <a href="#">Login</a>
                 </span>
@@ -84,49 +84,14 @@
                         <span>Current Time :
                         </span>
                         <span id="current-time"></span>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn a">Rainfall</button>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn a">Water Level</button>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <button type="button" class="btn a">Salinity</button>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn a">Reservoir</button>
-                    </li>
+                    </li>                    
                 </ul>
-                <div class="dropdown">
-                    <span>Hydrological Data:</span>
-                    <button
-                        class="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Select
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="#" id="all" onclick="showAllTables()">all</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table1" onclick="showRainfallTables()">Rainfall</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table2" onclick="showWaterLevellTables()">Water Level</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table3">Salinity</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table4">Reservoir</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table5" onclick="CCTVTables()">CCTV</a>
-                        </li>
-                    </ul>
+                <div class="dropdown" style="display: flex;">
+                    <button type="button" class="btn fifth">Status</button>
+                    <button type="button" class="btn fifth" id="managementButton">Management</button>
+                    <button type="button" class="btn fifth">Inspection</button>
+                    <button type="button" class="btn fifth">Statistics</button>
+                    <button type="button" class="btn fifth">Guidebooks</button>
                     <img src="/icons8-arrow-30.png" class="imgsertoku" id="rightMenu">
                 </div>
             </div>

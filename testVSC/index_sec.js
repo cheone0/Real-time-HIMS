@@ -515,3 +515,8 @@ async function initMap() {
 }
 
 window.initMap = initMap();
+
+
+document.getElementById('managementButton').addEventListener('click', function() {
+    window.location.href = 'management.html';
+});
