@@ -18,383 +18,738 @@
         <!-- js -->
         <script defer="defer" src="index.js"></script>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-        <script>
-            (g => {
-                var h,
-                    a,
-                    k,
-                    p = "The Google Maps JavaScript API",
-                    c = "google",
-                    l = "importLibrary",
-                    q = "__ib__",
-                    m = document,
-                    b = window;
-                b = b[c] || (b[c] = {});
-                var d = b.maps || (b.maps = {}),
-                    r = new Set,
-                    e = new URLSearchParams,
-                    u = () => h || (h = new Promise(async (f, n) => {
-                        await(a = m.createElement("script"));
-                        e.set("libraries", [...r] + "");
-                        for (k in g) 
-                            e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
-                        e.set("callback", c + ".maps." + q);
-                        a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
-                        d[q] = f;
-                        a.onerror = () => h = n(Error(p + " could not load."));
-                        a.nonce = m.querySelector("script[nonce]")
-                            ?.nonce || "";
-                        m
-                            .head
-                            .append(a)
-                    }));
-                d[l]
-                    ? console.warn(p + " only loads once. Ignoring:", g)
-                    : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n))
-            })({
-                key: "AIzaSyCJiSRk4Cbq2GedqEdlINzXEcwwxC5fjkE", v: "weekly",
-                // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha,
-                // etc.). Add other bootstrap parameters as needed, using camel case.
-            });
-        </script>
-    </script>
-</head>
 
-<body>
+    </head>
 
-    <div class="container-fluid">
-        <!-- 상단 네비게이션 바 -->
-        <nav class="navbar navbar-expand-lg topnav">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Real-time Hydrololgical Information Management System</a>
+    <body>
 
-                <span class="navbar-text">
-                    <a href="index_sec.html">Sitemap</a>
-                    <a href="#">User Name</a>
-                    <a href="#">Login</a>
-                </span>
-            </div>
-        </div>
-    </nav>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <span>Current Time :
-                        </span>
-                        <span id="current-time"></span>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn a">Rainfall</button>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn a">Water Level</button>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <button type="button" class="btn a">Salinity</button>
-                    </li>
-                    <li class="nav-item">
-                        <button type="button" class="btn a">Reservoir</button>
-                    </li>
-                </ul>
-                <div class="dropdown">
-                    <span>Hydrological Data:</span>
-                    <button
-                        class="btn btn-secondary dropdown-toggle"
-                        type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Select
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="#" id="all" onclick="showAllTables()">all</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table1" onclick="showRainfallTables()">Rainfall</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table2" onclick="showWaterLevellTables()">Water Level</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table3">Salinity</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table4">Reservoir</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" id="table5" onclick="CCTVTables()">CCTV</a>
-                        </li>
-                    </ul>
-                    <img src="/icons8-arrow-30.png" class="imgsertoku" id="rightMenu">
+            <!-- 상단 네비게이션 바 -->
+            <nav class="navbar navbar-expand-lg topnav">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Real-time Hydrololgical Information Management System</a>
+
+                    <span class="navbar-text">
+                        <a href="#">Sitemap</a>
+                        <a href="#">User Name</a>
+                        <a href="#">Login</a>
+                    </span>
                 </div>
             </div>
-        </div>
-    </nav>
-    <!-- 상단 네비게이션 바 끝 -->
-
-    <div style="display: flex;">
-        <!-- 지도 div -->
-        <div id="map" style="height:100vh; width: 100%;"></div>
-        <!-- 왼쪽 하단 토글 -->
-        <div class="mapBottom">
-            <div class="leftArrowBtn">
-                <button type="button" class="leftArrow">
-                    <img src="/icons8-arrow-50.png" alt="Icon">
-                </button>
-            </div>
-        </div>
-
-        <!-- 오른쪽 아코디언 메뉴 -->
-        <div class="accordion" id="accordionMenu">
-            <div class="accordionn">
-
-                <div id="baseTable">
-                    <div class="dropdown rightDropDown donshow" id="donshow">
-                        <span>Operation Agency:</span>
+        </nav>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <span>Current Time :
+                            </span>
+                            <span id="current-time"></span>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn a" id="rainfallBtn">Rainfall</button>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn a" id="waterLevelBtn">Water Level</button>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <button type="button" class="btn a">Salinity</button>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn a">Reservoir</button>
+                        </li>
+                    </ul>
+                    <div class="dropdown">
+                        <span>Hydrological Data:</span>
                         <button
                             class="btn btn-secondary dropdown-toggle"
                             type="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Total
+                            Select
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="#">Total</a>
+                                <a class="dropdown-item" href="#" id="all" onclick="showAllTables()">all</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="table1" onclick="showRainfallTables()">Rainfall</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="table2" onclick="showWaterLevellTables()">Water Level</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="table3">Salinity</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="table4">Reservoir</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#" id="table5" onclick="CCTVTables()">CCTV</a>
                             </li>
                         </ul>
+                        <img src="/icons8-arrow-30.png" class="imgsertoku" id="rightMenu">
                     </div>
+                </div>
+            </div>
+        </nav>
+        <!-- 상단 네비게이션 바 끝 -->
 
-                    <div class="firstTable">
-                        <!-- Rainfall Station 테이블생성 -->
-                        <div class="accordion-header">
-                            <span>Rainfall Station</span></div>
-                        <div class="accordion-body">
-                            <div class="table-container" style="height: 400px;">
-                                <table id="dynamic-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Station Name</th>
-                                            <th>RF 10min<br>[mm]</th>
-                                            <th>RF 1-hr<br>[mm]</th>
-                                            <th>RF 2-hr<br>[mm]</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- JavaScript가 이곳에 행을 추가합니다. -->
-                                    </tbody>
-                                </table>
+        <div style="display: flex;">
+            <!-- 지도 div -->
+            <div id="googleMap" style="width: 100%; height: 98vh;"></div>
+            <!-- 왼쪽 하단 토글 -->
+            <div class="mapBottom">
+                <div class="leftArrowBtn">
+                    <button type="button" class="leftArrow">
+                        <img src="/icons8-arrow-50.png" alt="Icon">
+                    </button>
+                </div>
+            </div>
+
+            <!-- 오른쪽 아코디언 메뉴 -->
+            <div class="accordion" id="accordionMenu">
+                <div class="accordionn">
+
+                    <div id="baseTable">
+                        <div class="dropdown rightDropDown donshow" id="donshow">
+                            <span>Operation Agency:</span>
+                            <button
+                                class="btn btn-secondary dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Total
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">Total</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="firstTable">
+                            <!-- Rainfall Station 테이블생성 -->
+                            <div class="accordion-header">
+                                <span>Rainfall Station</span></div>
+                            <div class="accordion-body">
+                                <div class="table-container" style="height: 400px;">
+                                    <table id="dynamic-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Station Name</th>
+                                                <th>RF 10min<br>[mm]</th>
+                                                <th>RF 1-hr<br>[mm]</th>
+                                                <th>RF 2-hr<br>[mm]</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- JavaScript가 이곳에 행을 추가합니다. -->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="secTable">
-                        <!-- Water Level Stations 테이블생성 -->
-                        <div class="accordion-header">
-                            <span>Water Level Stations</span></div>
-                        <div class="accordion-body">
-                            <div class="table-container" style="height: 400px;">
-                                <table id="dynamic-table2">
-                                    <thead>
-                                        <tr>
-                                            <th>Station Name</th>
-                                            <th>Current WL<br>[El.m]</th>
-                                            <th>-1-hr WL<br>[El.m]</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- JavaScript가 이곳에 행을 추가합니다. -->
-                                    </tbody>
-                                </table>
+                        <div class="secTable">
+                            <!-- Water Level Stations 테이블생성 -->
+                            <div class="accordion-header">
+                                <span>Water Level Stations</span></div>
+                            <div class="accordion-body">
+                                <div class="table-container" style="height: 400px;">
+                                    <table id="dynamic-table2">
+                                        <thead>
+                                            <tr>
+                                                <th>Station Name</th>
+                                                <th>Current WL<br>[El.m]</th>
+                                                <th>-1-hr WL<br>[El.m]</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- JavaScript가 이곳에 행을 추가합니다. -->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="thirTable">
-                        <!-- Warning Reports 테이블생성 -->
-                        <div class="accordion-header">
-                            <span>Warning Reports</span></div>
-                        <div class="accordion-body">
-                            <div class="table-container" style="height: 25vh;">
-                                <table id="dynamic-table3">
-                                    <thead>
-                                        <tr>
-                                            <th>Station Name</th>
-                                            <th>Type</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- JavaScript가 이곳에 행을 추가합니다. -->
-                                    </tbody>
-                                </table>
+                        <div class="thirTable">
+                            <!-- Warning Reports 테이블생성 -->
+                            <div class="accordion-header">
+                                <span>Warning Reports</span></div>
+                            <div class="accordion-body">
+                                <div class="table-container" style="height: 25vh;">
+                                    <table id="dynamic-table3">
+                                        <thead>
+                                            <tr>
+                                                <th>Station Name</th>
+                                                <th>Type</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- JavaScript가 이곳에 행을 추가합니다. -->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="fourTable" style="display: none;">
-                        <!-- CCTV 테이블생성 -->
-                        <div class="accordion-header">
-                            <span>CCTV</span></div>
-                        <div class="accordion-body">
-                            <div class="table-container" style="height: 100%;">
-                                <table id="dynamic-table3">
-                                    <thead>
-                                        <tr>
-                                            <th>Selection(■)</th>
-                                            <th>CCTV Name</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- JavaScript가 이곳에 행을 추가합니다. -->
-                                    </tbody>
-                                </table>
+                        <div class="fourTable" style="display: none;">
+                            <!-- CCTV 테이블생성 -->
+                            <div class="accordion-header">
+                                <span>CCTV</span></div>
+                            <div class="accordion-body">
+                                <div class="table-container" style="height: 100%;">
+                                    <table id="dynamic-table3">
+                                        <thead>
+                                            <tr>
+                                                <th>Selection(■)</th>
+                                                <th>CCTV Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- JavaScript가 이곳에 행을 추가합니다. -->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
-
             </div>
-        </div>
-        <!-- 오른쪽 아코디언 메뉴 끝-->
-    </div>
-
-    <!-- 왼쪽 하단 토글 -->
-    <div class="bottom-banner">
-        <div class="cardd">
-            <div class="card-headerr">Rainfall</div>
-            <div class="card-bodyy">
-                <img src="/icons8-rain-50 (4).png" class="imgsertoku">
-                <span>0mm</span>
-            </div>
-            <div class="card-bodyy">
-                <img src="/icons8-rain-50 (1).png" class="imgsertoku">
-                <span>0.1 ~ 5.0mm</span>
-            </div>
-            <div class="card-bodyy">
-                <img src="/icons8-rain-50 (2).png" class="imgsertoku">
-                <span>5.1 ~ 10.0mm</span>
-            </div>
-            <div class="card-bodyy">
-                <img src="/icons8-rain-50 (3).png" class="imgsertoku">
-                <span>10.1 ~ 15.0mm</span>
-            </div>
-            <div class="card-bodyy">
-                <img src="/icons8-rain-50.png" class="imgsertoku">
-                <span>15.1mm ~</span>
-            </div>
-        </div>
-        <div class="cardd">
-            <div class="card-headerr">Water Level</div>
-            <div class="card-bodyy">
-                <img src="/icons8-arrow-24.png" class="imgsertoku">
-                <span>Upward</span>
-            </div>
-            <div class="card-bodyy">
-                <img src="/icons8-arrow-25.png" class="imgsertoku">
-                <span>Downward</span>
-            </div>
-            <div class="card-bodyy">
-                <img src="/icons8-stop-64.png" class="imgsertoku">
-                <span>No Change</span>
-            </div>
-
-        </div>
-        <div class="cardd">
-            <div class="card-headerr">ETC</div>
-            <div class="card-bodyy">
-                <img src="/icons8-cctv-50.png" class="imgsertoku">
-                <span>CCTV</span>
-            </div>
-            <div class="card-bodyy">
-                <img src="/icons8-warning-64.png" class="imgsertoku">
-                <span>Warning</span>
-            </div>
-            <div class="card-bodyy">
-                <img src="/icons8-square-32.png" class="imgsertoku">
-                <span>Admin. District</span>
-            </div>
-            <div class="card-bodyy">
-                <img src="/icons8-square-24.png" class="imgsertoku">
-                <span>River</span>
-            </div>
+            <!-- 오른쪽 아코디언 메뉴 끝-->
         </div>
 
-    </div>
-    <!-- 왼쪽 하단 토글 끝-->
+        <!-- 왼쪽 하단 토글 -->
+        <div class="bottom-banner">
+            <div class="cardd">
+                <div class="card-headerr">Rainfall</div>
+                <div class="card-bodyy">
+                    <img src="/icons8-rain-50 (4).png" class="imgsertoku">
+                    <span>0mm</span>
+                </div>
+                <div class="card-bodyy">
+                    <img src="/icons8-rain-50 (1).png" class="imgsertoku">
+                    <span>0.1 ~ 5.0mm</span>
+                </div>
+                <div class="card-bodyy">
+                    <img src="/icons8-rain-50 (2).png" class="imgsertoku">
+                    <span>5.1 ~ 10.0mm</span>
+                </div>
+                <div class="card-bodyy">
+                    <img src="/icons8-rain-50 (3).png" class="imgsertoku">
+                    <span>10.1 ~ 15.0mm</span>
+                </div>
+                <div class="card-bodyy">
+                    <img src="/icons8-rain-50.png" class="imgsertoku">
+                    <span>15.1mm ~</span>
+                </div>
+            </div>
+            <div class="cardd">
+                <div class="card-headerr">Water Level</div>
+                <div class="card-bodyy">
+                    <img src="/icons8-arrow-24.png" class="imgsertoku">
+                    <span>Upward</span>
+                </div>
+                <div class="card-bodyy">
+                    <img src="/icons8-arrow-25.png" class="imgsertoku">
+                    <span>Downward</span>
+                </div>
+                <div class="card-bodyy">
+                    <img src="/icons8-stop-64.png" class="imgsertoku">
+                    <span>No Change</span>
+                </div>
 
-    <!-- 중앙 배너 -->
-    <div class="middleMenu" style="display: none;">
-        <div class="middleMenuTop">
-            <div class="middleMenuTopBanner">Rainfall Station:
-                <span></span><img
+            </div>
+            <div class="cardd">
+                <div class="card-headerr">ETC</div>
+                <div class="card-bodyy">
+                    <img src="/icons8-cctv-50.png" class="imgsertoku">
+                    <span>CCTV</span>
+                </div>
+                <div class="card-bodyy">
+                    <img src="/icons8-warning-64.png" class="imgsertoku">
+                    <span>Warning</span>
+                </div>
+                <div class="card-bodyy">
+                    <img src="/icons8-square-32.png" class="imgsertoku">
+                    <span>Admin. District</span>
+                </div>
+                <div class="card-bodyy">
+                    <img src="/icons8-square-24.png" class="imgsertoku">
+                    <span>River</span>
+                </div>
+            </div>
+
+        </div>
+        <!-- 왼쪽 하단 토글 끝-->
+
+        <!-- 중앙 배너 -->
+        <div class="middleMenu" style="display: none;">
+            <div class="middleMenuTop">
+                <div class="middleMenuTopBanner">Rainfall Station:
+                    <span></span><img
+                        src="/icons8-close-26.png"
+                        style="float: right; cursor: pointer;"
+                        id="closeIMG"></div>
+
+                <div class="middleMenu-body1">
+                    <input type="date" id="start" name="trip-start" style="margin-left: 10px;">
+                    <input type="date" id="end" name="trip-end">
+                    <button type="button" class="btn btn-primary" onclick="makeGraph()">Search</button>
+                    <button type="button" class="btn btn-primary">Download</button>
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        style="float: right; margin-right: 5px;">Save</button>
+                </div>
+
+                <div class="middleMenu-body2">
+                    <!-- 왼쪽표 -->
+                    <div class="innerBody1">
+                        <!-- 표 삽입 -->
+                        <div class="table-container" style="height: 400px;">
+                            <table id="dynamic-table55">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>TIME</th>
+                                        <th>RF[mm]</th>
+                                        <th>CRF[mm]</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="color: black;">
+                                    <!-- JavaScript가 이곳에 행을 추가합니다. -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- 오른쪽그래프 -->
+                    <div class="innerBody2">
+                        <img src="/graph.PNG" height="100%" width="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="middleMenuCCTV" style="display: none;">
+            <div class="middleMenuTop">
+                <div class="middleMenuTopBanner">View<img
                     src="/icons8-close-26.png"
                     style="float: right; cursor: pointer;"
-                    id="closeIMG"></div>
+                    id="closeIMG2"></div>
 
-            <div class="middleMenu-body1">
-                <input type="date" id="start" name="trip-start" style="margin-left: 10px;">
-                <input type="date" id="end" name="trip-end">
-                <button type="button" class="btn btn-primary" onclick="makeGraph()">Search</button>
-                <button type="button" class="btn btn-primary">Download</button>
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    style="float: right; margin-right: 5px;">Save</button>
-            </div>
-
-            <div class="middleMenu-body2">
-                <!-- 왼쪽표 -->
-                <div class="innerBody1">
-                    <!-- 표 삽입 -->
-                    <div class="table-container" style="height: 400px;">
-                        <table id="dynamic-table55">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>TIME</th>
-                                    <th>RF[mm]</th>
-                                    <th>CRF[mm]</th>
-                                </tr>
-                            </thead>
-                            <tbody style="color: black;">
-                                <!-- JavaScript가 이곳에 행을 추가합니다. -->
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-                <!-- 오른쪽그래프 -->
-                <div class="innerBody2">
-                    <img src="/graph.PNG" height="100%" width="100%">
-                </div>
+                <div class="middleMenuCCTV-body1"></div>
             </div>
         </div>
+
     </div>
 
-    <div class="middleMenuCCTV" style="display: none;">
-        <div class="middleMenuTop">
-            <div class="middleMenuTopBanner">View<img
-                src="/icons8-close-26.png"
-                style="float: right; cursor: pointer;"
-                id="closeIMG2"></div>
+    <script>
 
-            <div class="middleMenuCCTV-body1">
-                
+        const waterLevelmap = [
+            {
+                place: "Thon Nguyet Vien (đổi tên công trình)",
+                lat: 19.811911,
+                lng: 105.824436
 
-            </div>
-        </div>
-    </div>
+            }, {
+                place: "Cống Lộc Động (xã Quang Lộc) 1",
+                lat: 19.960186,
+                lng: 105.903964
 
-</div>
+            }, {
+                place: "Cống Lộc Động (xã Quang Lộc) 2",
+                lat: 19.960186,
+                lng: 105.903964
 
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+            }, {
+                place: "Trạm Bơm Hà Phú (thôn Cụ Thôn)",
+                lat: 19.982233,
+                lng: 105.897364
+
+            }, {
+                place: "TB Yen Vuc",
+                lat: 19.811911,
+                lng: 105.824436
+            }, {
+                place: "Cống Thành Châu 1",
+                lat: 19.776333,
+                lng: 105.874028
+
+            }, {
+                place: "Cống Thành Châu 2",
+                lat: 19.776333,
+                lng: 105.874028
+
+            }, {
+                place: "TB Nga Phu",
+                lat: 20.050972,
+                lng: 106.037861
+
+            }, {
+                place: "Âu thuyền Báo Văn 1",
+                lat: 19.993094,
+                lng: 105.919158
+
+            }, {
+                place: "Âu thuyền Báo Văn 2",
+                lat: 19.993094,
+                lng: 105.919158
+
+            }, {
+                place: "Song Muc 1",
+                lat: 19.617461,
+                lng: 105.529247
+
+            }, {
+                place: "Song Muc 2",
+                lat: 19.617461,
+                lng: 105.529247
+
+            }, {
+                place: "Yen My 1",
+                lat: 19.490861,
+                lng: 105.667667
+
+            }, {
+                place: "Yen My 2",
+                lat: 19.490861,
+                lng: 105.667667
+
+            }, {
+                place: "Cum Ho Chua Mang Mang",
+                lat: 20.066361,
+                lng: 105.640778
+
+            }, {
+                place: "Ho Cong Khe",
+                lat: 20.078583,
+                lng: 105.351611
+
+            }, {
+                place: "Ho Duong Coc",
+                lat: 20.221750,
+                lng: 105.317306
+
+            }, {
+                place: "Ho Thung Bang",
+                lat: 20.209000,
+                lng: 105.519722
+
+            }, {
+                place: "Ho Xuan Lung",
+                lat: 20.214050,
+                lng: 105.574247
+
+            }, {
+                place: "Ho Binh Cong",
+                lat: 20.210472,
+                lng: 105.662556
+
+            }, {
+                place: "Ho Dong Ngu",
+                lat: 20.098889,
+                lng: 105.713861
+
+            }, {
+                place: "Ho Cua Trat",
+                lat: 19.857139,
+                lng: 105.435250
+
+            }, {
+                place: "Ho Dong Be",
+                lat: 19.758278,
+                lng: 105.541861
+
+            }, {
+                place: "Ho Hao Hao",
+                lat: 19.488972,
+                lng: 105.734750
+
+            }, {
+                place: "Ho Ben Quan",
+                lat: 20.078111,
+                lng: 105.809833
+
+            }, {
+                place: "Ho Dong Chua",
+                lat: 19.324975,
+                lng: 105.777267
+
+            }, {
+                place: "Âu thuyền Như Lăng",
+                lat: 19.809644,
+                lng: 105.767158
+
+            }, {
+                place: "Thọ Xuân",
+                lat: 19.977139,
+                lng: 105.560889
+
+            }, {
+                place: "Tram Bom Yen Ton",
+                lat: 20.079194,
+                lng: 105.565608
+
+            }, {
+                place: "Tram Bom Phu Ninh",
+                lat: 19.957389,
+                lng: 105.755278
+
+            }, {
+                place: "Bai Thuong",
+                lat: 19.896178,
+                lng: 105.379161
+
+            }, {
+                place: "Ly Nhan",
+                lat: 20.021942,
+                lng: 105.599183
+
+            }, {
+                place: "Tram Bom Vinh Hung",
+                lat: 20.008594,
+                lng: 105.688431
+
+            }, {
+                place: "Ma-Chu River WSL",
+                lat: 19.780908,
+                lng: 105.922944
+
+            }, {
+                place: "Chu River WSL(Cudat DW)",
+                lat: 19.875331,
+                lng: 105.298561
+
+            }, {
+                place: "Song Yen River(Song Muc-Yem My)",
+                lat: 19.614506,
+                lng: 105.690017
+
+            }, {
+                place: "Song Yen River DW",
+                lat: 19.593433,
+                lng: 105.812297
+
+            }, {
+                place: "Trans BC DW_ Ma river",
+                lat: 20.533644,
+                lng: 104.757408
+
+            }
+
+        ];
+
+        const rainfallmap = [
+            {
+                place: "Song Muc 1",
+                lat: 19.617461,
+                lng: 105.529247
+
+            }, {
+                place: "Song Muc 2",
+                lat: 19.617461,
+                lng: 105.529247
+
+            }, {
+                place: "Song Muc 3",
+                lat: 19.617461,
+                lng: 105.529247
+
+            }, {
+                place: "Yen My 1",
+                lat: 19.490861,
+                lng: 105.667667
+
+            }, {
+                place: "Yen My 2",
+                lat: 19.490861,
+                lng: 105.667667
+
+            }, {
+                place: "Cum Ho Chua Mang Mang",
+                lat: 20.066361,
+                lng: 105.640778
+
+            }, {
+                place: "Ho Cong Khe",
+                lat: 20.078583,
+                lng: 105.351611
+
+            }, {
+                place: "Ho Duong Coc",
+                lat: 20.221750,
+                lng: 105.317306
+
+            }, {
+                place: "Ho Thung Bang",
+                lat: 20.209000,
+                lng: 105.519722
+
+            }, {
+                place: "Ho Xuan Lung",
+                lat: 20.214050,
+                lng: 105.574247
+
+            }, {
+                place: "Ho Binh Cong",
+                lat: 20.210472,
+                lng: 105.662556
+
+            }, {
+                place: "Ho Dong Ngu",
+                lat: 20.098889,
+                lng: 105.713861
+
+            }, {
+                place: "Ho Cua Trat",
+                lat: 19.857139,
+                lng: 105.435250
+
+            }, {
+                place: "Ho Dong Be",
+                lat: 19.758278,
+                lng: 105.541861
+
+            }, {
+                place: "Ho Hao Hao",
+                lat: 19.488972,
+                lng: 105.734750
+
+            }, {
+                place: "Ho Ben Quan",
+                lat: 20.078111,
+                lng: 105.809833
+
+            }, {
+                place: "Thọ Xuân",
+                lat: 19.977139,
+                lng: 105.560889
+
+            }, {
+                place: "Tram Bom Yen Ton",
+                lat: 20.079194,
+                lng: 105.565608
+
+            }, {
+                place: "Tram Bom Phu Ninh",
+                lat: 19.957389,
+                lng: 105.755278
+
+            }, {
+                place: "Dap Dieu Thieu Ngoc",
+                lat: 19.939889,
+                lng: 105.611639
+
+            }, {
+                place: "Trans BC DW_ Ma river",
+                lat: 20.533644,
+                lng: 104.757408
+
+            }
+        ]
+
+         // 클릭 횟수를 저장할 변수
+         let rainfallClickCount = 0;
+        let waterLevelClickCount = 0;
+
+        // 버튼 요소 가져오기
+        const rainfallBtn = document.getElementById('rainfallBtn');
+        const waterLevelBtn = document.getElementById('waterLevelBtn');
+
+        // 지도 변수 선언
+        let map;
+
+        // 마커를 저장할 배열
+        let rainfallMarkers = [];
+        let waterLevelMarkers = [];
+
+        // 지도 초기화 함수
+        function initMap() {
+            const styledMapType = new google.maps.StyledMapType([
+                {
+                    featureType: "poi",
+                    elementType: "labels.icon",
+                    stylers: [{ visibility: "off" }]
+                }
+            ]);
+
+            const mapOptions = {
+                center: new google.maps.LatLng(19.806692123413086, 105.7851791381836),
+                zoom: 14
+            };
+
+            map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+            map.mapTypes.set("styled_map", styledMapType);
+            map.setMapTypeId("styled_map");
+        }
+
+        // 마커를 추가하는 함수
+        function addMarkers(markerData, markersArray, icon) {
+            for (let i = 0; i < markerData.length; i++) {
+                const marker = new google.maps.Marker({
+                    map: map,
+                    position: new google.maps.LatLng(markerData[i].lat, markerData[i].lng),
+                    icon: icon
+                });
+                markersArray.push(marker);
+            }
+        }
+
+        // 마커를 제거하는 함수
+        function removeMarkers(markersArray) {
+            for (let i = 0; i < markersArray.length; i++) {
+                markersArray[i].setMap(null);
+            }
+            markersArray.length = 0; // 배열을 비웁니다.
+        }
+
+        // 버튼에 클릭 이벤트 리스너 추가 (Rainfall)
+        rainfallBtn.addEventListener('click', () => {
+            // 클릭 횟수 증가
+            rainfallClickCount++;
+            console.log('Rainfall Click Count:', rainfallClickCount);
+
+            // 클릭 횟수가 홀수일 때 마커 추가 함수 실행
+            if (rainfallClickCount % 2 === 1) {
+                const myIcon2 = new google.maps.MarkerImage("/marker2.png", null, null, null, new google.maps.Size(50, 57));
+                addMarkers(rainfallmap, rainfallMarkers, myIcon2);
+            } else { // 클릭 횟수가 짝수일 때 마커 제거 함수 실행
+                removeMarkers(rainfallMarkers);
+            }
+        });
+
+        // 버튼에 클릭 이벤트 리스너 추가 (Water Level)
+        waterLevelBtn.addEventListener('click', () => {
+            // 클릭 횟수 증가
+            waterLevelClickCount++;
+            console.log('Water Level Click Count:', waterLevelClickCount);
+
+            // 클릭 횟수가 홀수일 때 마커 추가 함수 실행
+            if (waterLevelClickCount % 2 === 1) {
+                const myIcon = new google.maps.MarkerImage("/marker.png", null, null, null, new google.maps.Size(50, 57));
+                addMarkers(waterLevelmap, waterLevelMarkers, myIcon);
+            } else { // 클릭 횟수가 짝수일 때 마커 제거 함수 실행
+                removeMarkers(waterLevelMarkers);
+            }
+        });
+
+        // 문서가 로드되면 지도 초기화
+        window.onload = initMap;
+
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCJiSRk4Cbq2GedqEdlINzXEcwwxC5fjkE&callback=initMap"></script>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

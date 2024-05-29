@@ -1,98 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!-- 제이쿼리cdn -->
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <!-- css -->
+        <link rel="stylesheet" type="text/css" href="test.css">
+        <!-- js -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    </head>
+    <body>
+        <script>
+            if(clickCount%2=== 1){
+    //rainfall 버튼 마커 생성
+    for (var i = 0; i < rainfallmap.length; i++) {
+                // 마커에 대한 클로저를 생성
+                (function (i) {
+                    var markerIcon = myIcon2; // 기본 아이콘을 사용
 
-    <h1>hi</h1>
-    <script>
-
-      
-const data = [
-    {대표자성명: "오 귀 분", 확인필요: true}, 
-    {생년월일: "580315 2772020", 확인필요: true}, 
-    {상호: "동막 태양광발전소", 확인필요: false}, 
-    {전화번호: "010-2513-4758", 확인필요: false}, 
-    {사업개시연월일: "2018년 8월 2일", 확인필요: false}, 
-    {신고내용: "태양광발전 99,36 kW 삼주 12 - 3/8", 확인필요: true}
-];
-
-console.log(data);
-
-function convertDateString(dateString) {
-    // 연, 월, 일을 추출하는 정규식 패턴
-    const regex = /\s*(\d+)\s*년\s*(\d+)\s*월\s*(\d+)\s*일/;
-    const match = dateString.match(regex);
-    
-    if (match) {
-        const year = match[1];
-        const month = match[2];
-        const day = match[3];
-
-        // 월과 일 값이 한 자리일 경우 앞에 0을 추가합니다.
-        const formattedMonth = month.length === 1 ? '0' + month : month;
-        const formattedDay = day.length === 1 ? '0' + day : day;
-
-        // YYYY-MM-DD 형식으로 반환합니다.
-        return `${year}-${formattedMonth}-${formattedDay}`;
-    } else {
-        // 매칭되는 패턴이 없을 경우 에러 처리
-        throw new Error('Invalid date string format');
-    }
-}
-
-
-
-
-function insertName(data) {
-	//대표자 성명
-	const representativeName = data.find(item => item.hasOwnProperty('대표자성명'))['대표자성명'].trim();
-	//$('input[name=repsntNm]').attr('value', representativeName);
-	console.log("대표자성명:", representativeName);
-
-	//생년월일
-	const Birth = data.find(item => item.hasOwnProperty('생년월일'))['생년월일'];
-	//$('input[name=brthYmd]').attr('value', Birth);
-	console.log("생년월일:", Birth);
-
-	//상호
-	const trnm = data.find(item => item.hasOwnProperty('상호'))['상호'];
-	//$('input[name=trnm]').attr('value', trnm);
-
-	console.log("상호:", trnm);
-
-	//전화번호
-	const siteTelno = data.find(item => item.hasOwnProperty('전화번호'))['전화번호'];
-	//document.getElementById('siteTelno').value = siteTelno;
-	console.log("전화번호:", siteTelno);
-
-	//사업개시 연월일
-	const openingYmd = data.find(item => item.hasOwnProperty('사업개시연월일'))['사업개시연월일'];
-	//document.getElementById('openingYmd').value = convertDateString(openingYmd);
-	console.log("사업개시 연월일 :", convertDateString(openingYmd));
-
-	//신고내용
-	const bsnsCn = data.find(item => item.hasOwnProperty('신고내용'))['신고내용'];
-	//document.getElementById('bsnsCn').value = bsnsCn;
-	console.log("신고내용:", bsnsCn);
+                    var marker = new google
+                        .maps
+                        .Marker({
+                            map: map,
+                            position: new google
+                                .maps
+                                .LatLng(rainfallmap[i].lat, rainfallmap[i].lng),
+                            icon: markerIcon
+                        });
+                })(i); // 즉시 실행 함수로 현재의 i 값을 전달
+            }
 
 }
+            
+            // water level 마커 생성
 
+            for (var i = 0; i < waterLevelmap.length; i++) {
+                // 마커에 대한 클로저를 생성
+                (function (i) {
+                    var markerIcon = myIcon; // 기본 아이콘을 사용
 
+                    var marker = new google
+                        .maps
+                        .Marker({
+                            map: map,
+                            position: new google
+                                .maps
+                                .LatLng(waterLevelmap[i].lat, waterLevelmap[i].lng),
+                            icon: markerIcon
+                        });
+                })(i); // 즉시 실행 함수로 현재의 i 값을 전달
+            }
 
-
-
-insertName(data);
-
-
-
-
-
-
-    </script>
-    
-</body>
+        </script>
+        
+    </body>
 </html>
